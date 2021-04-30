@@ -2,6 +2,15 @@
 
 This project uses Docker swarms to create abstract networks used by Spark nodes
 
+## Table of contents
+
+* [Opened ports](#openedports)
+* [Creating the swarm](#creatingtheswarm)
+* [Creating an overlay network](#creatinganoverlaynetwork)
+* [Launching Apache Spark](#launchingapachespark)
+
+<a name="openedports"/>
+
 ## Opened ports
 
 Using swarms needs the following ports to be open and publicly accessible on every server/computer that will be part of the system : 
@@ -14,6 +23,8 @@ Furthermore, Spark Web UIs need the following ports :
 
 * For master nodes, **TCP** ``` 8080``` and ```4040```
 * For worker nodes, **TCP** ```8081```
+
+<a name="creatingtheswarm"/>
 
 ## Creating the swarm
 
@@ -48,6 +59,8 @@ The command has to be executed on any server which is needed to join the swarm.
 
 If the server is hidden behind a router, it's required to add ```--advertise-addr $ROUTER_PUBLIC_IP``` in the ```docker swarm join``` command.
 
+<a name="creatinganoverlaynetwork"/>
+
 ## Creating an overlay network
 
 The overlay network will allow a seamless communication between swarm node.
@@ -57,6 +70,8 @@ docker network create --driver=overlay --attachable spark-net
 ```
 
 The ```--attachable``` tag makes the network available for future containers.
+
+<a name="launchingapachespark"/>
 
 ## Launching Apache Spark 
 
